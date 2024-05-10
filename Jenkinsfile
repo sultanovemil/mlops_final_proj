@@ -17,7 +17,15 @@ pipeline {
                     python3 src/download_data.py
                 '''
             }
-        }        
+        }
+         stage('Test dataset') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    python3 tests/test_dataset.py
+                '''
+            }
+		}
     }
     post {
         always {
