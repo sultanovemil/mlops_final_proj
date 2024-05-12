@@ -58,6 +58,16 @@ pipeline {
                     '''
             }
         }
+        stage('Build docker container') {
+            steps {
+                sh 'docker build -t my_app .'
+            }
+        }
+        stage('Run docker container') {
+            steps {
+                sh 'docker run -d -p 8501:8501 my_app'
+            }
+        }
     }
     post {
         always {
