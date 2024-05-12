@@ -41,6 +41,14 @@ pipeline {
                     python3 src/train_model.py
                     '''
             }
+        }
+        stage('Metrics') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    python3 src/metrics.py
+                    '''
+            }
         }       
     }
     post {
