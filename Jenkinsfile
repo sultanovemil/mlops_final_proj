@@ -33,7 +33,15 @@ pipeline {
                     python3 src/preprocessing.py
                 '''
             }
-        }        
+        }
+        stage('Train model') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    python3 src/train_model.py
+                    '''
+            }
+        }       
     }
     post {
         always {
