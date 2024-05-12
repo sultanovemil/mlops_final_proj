@@ -25,7 +25,15 @@ pipeline {
                     python3 tests/test_dataset.py
                 '''
             }
-		}
+        }
+        stage('Preprocessing') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    python3 src/preprocessing.py
+                '''
+            }
+        }        
     }
     post {
         always {
