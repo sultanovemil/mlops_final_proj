@@ -49,7 +49,15 @@ pipeline {
                     python3 src/metrics.py
                     '''
             }
-        }       
+        }
+        stage('Test model') {
+            steps {
+                sh '''
+                    . venv/bin/activate
+                    pytest tests/test_model.py
+                    '''
+            }
+        }
     }
     post {
         always {
