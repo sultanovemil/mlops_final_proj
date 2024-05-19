@@ -16,6 +16,8 @@
 
 ![pipeline](https://drive.google.com/uc?export=view&id=1DJkfeyeKDUyPElrekVUId76dPzqwTx4Q)
 
+![pipeline](https://drive.google.com/uc?export=view&id=1SNs7sDyga8NNODK3ElRm8Z7kih0C3tap)
+
 ## Этапы сборки и развертывания
 
 Сборка и развертывание проекта осуществляется с помощью Jenkins Pipeline, содержащей следующие этапы:
