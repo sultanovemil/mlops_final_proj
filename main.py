@@ -3,15 +3,13 @@ import streamlit as st
 import pandas as pd
 import pickle
 
-
 # Setting up the page configuration for Streamlit App
 st.set_page_config(
     page_title=" :mushroom: Mushroom App",
-    page_icon="🍄",
+    page_icon="üçÑ",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-
 
 # Function for user input features
 def user_input_features():
@@ -87,7 +85,6 @@ def user_input_features():
                                     'winter',)
     )
 
-
     # Function to get the color code
     def get_color(color_name):
         color_dict = {
@@ -106,7 +103,6 @@ def user_input_features():
         }
         return color_dict.get(color_name.lower(), "not found")
 
-
     # Function to get the cap shape code
     def get_cap_shape(cap_shape):
         shape_dict = {
@@ -120,7 +116,6 @@ def user_input_features():
         }
         return shape_dict.get(cap_shape.lower(), "not found")
 
-
     # Function to get gill attachment code
     def get_gill_attachment(gill_attachment):
         gill_attachment_dict = {
@@ -133,7 +128,6 @@ def user_input_features():
             'none': 6,
         }
         return gill_attachment_dict.get(gill_attachment.lower(), "not found")
-
 
     # Function to get season code
     def get_season(season):
@@ -160,19 +154,24 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-
 # Function to load the prediction model
 #@st.cache_data()
 def get_model():
     model = pickle.load(open("models/rfc_model.pkl", "rb"))
     return model
 
-
 # Function to make prediction using the model and input data
 def make_prediction(data):
     model = get_model()
     return model.predict(data)
 
+# Function to process uploaded CSV file and make predictions
+def process_file(file):
+    data = pd.read_csv(file)
+    model = get_model()
+    predictions = model.predict(data)
+    data['prediction'] = predictions
+    return data
 
 # Main function
 def main():
@@ -193,6 +192,19 @@ def main():
         else:
             st.success("# Result: Edible :mushroom: ")
 
+    # File upload for batch prediction
+    st.write("## Загрузка CSV-файла с данными о грибах для массового предсказания")
+    uploaded_file = st.file_uploader("Choose a CSV file", type="csv")
+    if uploaded_file is not None:
+        result_df = process_file(uploaded_file)
+        st.write(result_df)
+        csv = result_df.to_csv(index=False).encode('utf-8')
+        st.download_button(
+            label="Download predictions as CSV",
+            data=csv,
+            file_name='predictions.csv',
+            mime='text/csv',
+        )
 
 # Running the main function
 if __name__ == "__main__":
