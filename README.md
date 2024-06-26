@@ -13,7 +13,7 @@
 
 Данное веб-приложение определяет, является ли гриб съедобным или ядовитым, на основе модели, обученной на наборе данных "Mushroom Dataset for Binary Classification".
 
-<!--![pipeline](https://drive.google.com/uc?export=view&id=1rIlkQf-ZJLRWwECM978oiaD_IWBc9y3G)-->
+![pipeline](https://drive.google.com/uc?export=view&id=1rIlkQf-ZJLRWwECM978oiaD_IWBc9y3G)
 
 ![pipeline](https://drive.google.com/uc?export=view&id=1DJkfeyeKDUyPElrekVUId76dPzqwTx4Q)
 
